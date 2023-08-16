@@ -26,3 +26,12 @@ a:hover {
 .car-photo img {
 	width: 175px;
 }
+
+footer .share {
+	overflow: hidden;
+}
+
+footer .share div {
+	margin-right: 5px;
+	float: left;
+}
