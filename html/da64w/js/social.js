@@ -1,35 +1,4 @@
-const list = [
-	{
-		href: "https://twitter.com/share?url=https://arkw.work/da64w/&text=%E3%82%B9%E3%82%BA%E3%82%AD+%E3%82%A8%E3%83%96%E3%83%AA%E3%82%A4%E3%83%AF%E3%82%B4%E3%83%B3+DA64W+%7C+Arakawa+Laboratory",
-		color: "#212121",
-		src: "img/social/x.svg",
-	},
-	{
-		href: "https://www.facebook.com/sharer/sharer.php?u=https://arkw.work/da64w/",
-		color: "#1877f2",
-		src: "img/social/facebook.svg",
-	},
-	{
-		href: "http://line.me/R/msg/text/?%E3%82%B9%E3%82%BA%E3%82%AD+%E3%82%A8%E3%83%96%E3%83%AA%E3%82%A4%E3%83%AF%E3%82%B4%E3%83%B3+DA64W+%7C+Arakawa+Laboratory%20https://arkw.work/da64w/",
-		color: "#06c755",
-		src: "img/social/line.svg",
-	},
-	{
-		href: "https://b.hatena.ne.jp/entry/arkw.work/da64w/#bbutton",
-		color: "#00a4de",
-		src: "img/social/hatena.svg",
-	},
-	{
-		href: "javascript:copy()",
-		color: "#757575",
-		src: "img/social/copy.svg",
-	},
-];
-
-const text =
-	"スズキ エブリイワゴン DA64W | Arakawa Laboratory https://arkw.work/da64w/";
-
-function copy() {
+function copy(text) {
 	navigator.clipboard.writeText(text).then(
 		() => {
 			alert("サイト名とURLをクリップボードにコピーしました。");
@@ -41,6 +10,37 @@ function copy() {
 }
 
 window.onload = function () {
+	const title = document.title;
+	const titleEncoded = encodeURIComponent(title).replace(/\s/g, "+");
+	const url = location.href;
+	const urlHatena = url.replace("https://", "").replace("http://", "");
+	const list = [
+		{
+			href: "https://twitter.com/share?url=" + url + "&text=" + titleEncoded,
+			color: "#212121",
+			src: "img/social/x.svg",
+		},
+		{
+			href: "https://www.facebook.com/sharer/sharer.php?u=" + url,
+			color: "#1877f2",
+			src: "img/social/facebook.svg",
+		},
+		{
+			href: "http://line.me/R/msg/text/?" + titleEncoded + "%20" + url,
+			color: "#06c755",
+			src: "img/social/line.svg",
+		},
+		{
+			href: "https://b.hatena.ne.jp/entry/" + urlHatena + "#bbutton",
+			color: "#00a4de",
+			src: "img/social/hatena.svg",
+		},
+		{
+			href: 'javascript:copy("' + title + " " + url + '")',
+			color: "#757575",
+			src: "img/social/copy.svg",
+		},
+	];
 	let footer = document.getElementsByTagName("footer")[0];
 	let elementShare = document.createElement("div");
 	elementShare.style.marginBottom = "20px";
