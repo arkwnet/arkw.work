@@ -1,7 +1,7 @@
 function copy(text) {
 	navigator.clipboard.writeText(text).then(
 		() => {
-			alert("サイト名とURLをクリップボードにコピーしました。");
+			alert("ページタイトルとURLをクリップボードにコピーしました。");
 		},
 		() => {
 			alert("クリップボードへのコピーに失敗しました。");
@@ -19,26 +19,31 @@ window.onload = function () {
 			href: "https://twitter.com/share?url=" + url + "&text=" + titleEncoded,
 			color: "#212121",
 			src: "img/social/x.svg",
+			blank: true,
 		},
 		{
 			href: "https://www.facebook.com/sharer/sharer.php?u=" + url,
 			color: "#1877f2",
 			src: "img/social/facebook.svg",
+			blank: true,
 		},
 		{
 			href: "http://line.me/R/msg/text/?" + titleEncoded + "%20" + url,
 			color: "#06c755",
 			src: "img/social/line.svg",
+			blank: true,
 		},
 		{
 			href: "https://b.hatena.ne.jp/entry/" + urlHatena + "#bbutton",
 			color: "#00a4de",
 			src: "img/social/hatena.svg",
+			blank: true,
 		},
 		{
 			href: 'javascript:copy("' + title + " " + url + '")',
 			color: "#757575",
 			src: "img/social/copy.svg",
+			blank: false,
 		},
 	];
 	let footer = document.getElementsByTagName("footer")[0];
@@ -57,6 +62,9 @@ window.onload = function () {
 	for (let i = 0; i < list.length; i++) {
 		let elementLink = document.createElement("a");
 		elementLink.href = list[i].href;
+		if (list[i].blank == true) {
+			elementLink.target = "_blank";
+		}
 		elementLink.style.width = "40px";
 		let elementDiv = document.createElement("div");
 		elementDiv.style.width = "40px";
