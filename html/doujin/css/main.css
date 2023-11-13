@@ -56,6 +56,11 @@ body {
 	vertical-align: top;
 }
 
+.contents ul {
+	padding-left: 15px;
+	list-style-type: disc;
+}
+
 .alert {
 	padding: 5px 15px;
 	border: solid 3px #f44336;
